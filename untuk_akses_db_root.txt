@@ -1,0 +1,91 @@
+Pesan "Access denied for user 'root'@'localhost'" menunjukkan bahwa pengguna `root` tidak dapat terhubung ke database MySQL atau MariaDB karena kesalahan autentikasi. Berikut adalah beberapa langkah yang dapat Anda lakukan untuk memecahkan masalah ini:
+
+### 1. Verifikasi Kredensial
+Pastikan Anda menggunakan kredensial yang benar untuk pengguna `root`. Kredensial ini termasuk nama pengguna dan kata sandi yang Anda gunakan untuk mengakses MySQL/MariaDB.
+
+### 2. Ubah Kata Sandi Pengguna `root`
+Jika Anda tidak yakin dengan kata sandi pengguna `root`, Anda bisa mengubahnya. Berikut adalah langkah-langkah untuk mengubah kata sandi root:
+
+#### MySQL
+1. Masuk ke MySQL sebagai pengguna `root` (dengan autentikasi Unix Socket):
+
+   ```sh
+   sudo mysql
+   ```
+
+2. Ubah kata sandi pengguna `root`:
+
+   ```sql
+   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
+   FLUSH PRIVILEGES;
+   ```
+
+3. Keluar dari MySQL:
+
+   ```sql
+   EXIT;
+   ```
+
+#### MariaDB
+1. Masuk ke MariaDB sebagai pengguna `root` (dengan autentikasi Unix Socket):
+
+   ```sh
+   sudo mariadb
+   ```
+
+2. Ubah kata sandi pengguna `root`:
+
+   ```sql
+   SET PASSWORD FOR 'root'@'localhost' = PASSWORD('new_password');
+   FLUSH PRIVILEGES;
+   ```
+
+3. Keluar dari MariaDB:
+
+   ```sql
+   EXIT;
+   ```
+
+### 3. Periksa Pengaturan `my.cnf`
+Pastikan file konfigurasi MySQL/MariaDB (`my.cnf`) tidak membatasi akses pengguna `root`. Anda dapat memeriksa file ini di lokasi berikut:
+
+```sh
+sudo nano /etc/mysql/my.cnf
+```
+
+### 4. Gunakan Autentikasi yang Tepat di Adminer
+Saat login ke Adminer, pastikan Anda menggunakan autentikasi yang benar. Isikan detail sebagai berikut:
+
+- **Server**: `localhost`
+- **Username**: `root`
+- **Password**: `new_password` (kata sandi yang baru Anda tetapkan)
+- **Database**: (biarkan kosong atau masukkan nama database yang ingin Anda akses)
+
+### 5. Periksa Hak Akses Pengguna `root`
+Pastikan pengguna `root` memiliki hak akses yang cukup. Masuk ke MySQL/MariaDB dan jalankan perintah berikut untuk memeriksa hak akses:
+
+```sql
+SHOW GRANTS FOR 'root'@'localhost';
+```
+
+Jika perlu, Anda dapat memberikan semua hak akses kepada pengguna `root`:
+
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+
+### 6. Restart MySQL/MariaDB
+Setelah melakukan perubahan, restart layanan MySQL/MariaDB:
+
+```sh
+sudo systemctl restart mysql
+```
+
+atau
+
+```sh
+sudo systemctl restart mariadb
+```
+
+Setelah mengikuti langkah-langkah di atas, coba lagi untuk login ke Adminer. Jika Anda masih menghadapi masalah, beri tahu saya pesan kesalahan terbaru yang Anda terima.

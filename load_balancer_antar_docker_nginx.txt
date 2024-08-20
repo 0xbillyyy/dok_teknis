@@ -1,0 +1,28 @@
+1. docker pull nginx
+2. docker run -d --name nama_app1 -p 8081[port tiga]:80 nginx
+3. docker run -d --name nama_app1 -p 8082[port dua]:80 nginx
+4. buat file nginx.conf pada direktori yang tersedia(contoh: /home/user/riset/nginx.conf)
+```
+events {}
+
+http {
+    upstream myapp {
+        server app1:80;
+        server app3:80;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://myapp;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+}
+```
+5. docker run -d --name app1 -p 8081[port yang diinginkan]:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf:ro nginx
+6. coba akses

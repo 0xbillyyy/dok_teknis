@@ -1,0 +1,3 @@
+https://www.hostinger.co.id/tutorial/install-mongodb-ubuntu
+
+install mongodb

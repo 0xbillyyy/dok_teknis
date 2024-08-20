@@ -1,0 +1,2 @@
+memunculkan ip address vibox
+https://superuser.com/questions/1721503/virtualbox-host-only-adapter-interface-doesnt-get-an-ip-address-in-oracle-linux

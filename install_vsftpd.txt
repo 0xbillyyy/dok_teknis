@@ -1,0 +1,3 @@
+cara install ftp dengan vsftpd
+
+https://musaamin.web.id/cara-install-ftp-server-dengan-vsftpd-di-ubuntu/

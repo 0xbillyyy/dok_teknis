@@ -1,0 +1,9 @@
+Tidak semua router os support the dude.
+cuma ada 2 yang long stable.
+
+
+1. install the dude
+2. enable pada terminal router atau winbox pada `/dude set enabled=yes`
+3. jika belum tersedia the dude maka diharuskan download the dude packages terlebih dahulu.
+4. jalankan the dude dan koneksikan host, port, username, password sesuai mikrotik/router os sendiri.
+5. lakukan `discover` untuk otomatis deteksi jaringan melalui `network maps`

@@ -1,0 +1,30 @@
+membangun web server supaya bisa diakses local network adalah
+
+install mysql dan apache
+
+edit /etc/mysql/my.cnf 
+[mysqld]
+bind-address=0.0.0.0
+
+
+lalu izinkan firewall dengan langkah
+sudo ufw enable
+sudo ufw allow 22/tcp
+sudo ufw allow 22
+sudo ufw allow 3306
+dsb....
+
+lalu akses mysql dari luar
+dengan cara mysql -h HOST -u USERNAME -p
+
+jika access denied
+
+maka ubah privileges pada mysql dengan cara 
+create user 'username'@'%' identified by 'password';
+
+create user 'username'@'%' identified with mysql_native_password by 'password';
+
+untuk memberikan semua akses pada suatu user maka jalankan
+
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
+

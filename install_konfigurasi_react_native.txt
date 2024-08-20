@@ -1,0 +1,12 @@
+1. install expo react 
+`C:\Users\billy\Documents\RISET\react-native>npm install -g expo-cli`
+
+2. create aplikasi expo-app atau react native
+C:\Users\billy\Documents\RISET\reactnative>npx create-expo-app@latest
+
+3. cd direktori
+
+4. compile aplikasi dan jangan lupa download aplikasi expo-go untuk emulator di hp
+C:\Users\billy\Documents\RISET\reactnative\my-app>npx expo start
+
+5. dan scan barcodenya
